@@ -545,34 +545,34 @@ except NameError:
     print "Unable to bind video decoding methods with psyco. Proceeding anyways, but video decoding will be slow!"
 
 
-def main():
-    fh = open('framewireshark.raw', 'r')
-    #fh = open('videoframe.raw', 'r')
-    data = fh.read()
-    fh.close()
-    runs = 20
-    t = 0
-    for i in range(runs):
-        print '.',
-        width, height, image, ti = read_picture(data)
-        #show_image(image, width, height)
-        t += ti
-    print
-    print 'avg time:\t', t / runs, 'sec'
-    print 'avg fps:\t', 1 / (t / runs), 'fps'
-    if 'image' in sys.argv:
-        import pygame
-        pygame.init()
-        W, H = 320, 240
-        screen = pygame.display.set_mode((W, H))
-        surface = pygame.image.fromstring(image, (width, height), 'RGB')
-        screen.blit(surface, (0, 0))
-        pygame.display.flip()
-        raw_input()
+# def main():
+#     fh = open('framewireshark.raw', 'r')
+#     #fh = open('videoframe.raw', 'r')
+#     data = fh.read()
+#     fh.close()
+#     runs = 20
+#     t = 0
+#     for i in range(runs):
+#         print '.',
+#         width, height, image, ti = read_picture(data)
+#         #show_image(image, width, height)
+#         t += ti
+#     print
+#     print 'avg time:\t', t / runs, 'sec'
+#     print 'avg fps:\t', 1 / (t / runs), 'fps'
+#     if 'image' in sys.argv:
+#         import pygame
+#         pygame.init()
+#         W, H = 320, 240
+#         screen = pygame.display.set_mode((W, H))
+#         surface = pygame.image.fromstring(image, (width, height), 'RGB')
+#         screen.blit(surface, (0, 0))
+#         pygame.display.flip()
+#         raw_input()
 
 
-if __name__ == '__main__':
-    if 'profile' in sys.argv:
-        cProfile.run('main()')
-    else:
-        main()
+# if __name__ == '__main__':
+#     if 'profile' in sys.argv:
+#         cProfile.run('main()')
+#     else:
+#         main()
